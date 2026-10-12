@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="理想の一日を描き、自分が大切にしている価値観と、これからの暮らしのヒントを見つけるビジョンワーク。"><meta name="theme-color" content="#45634f"><meta property="og:title" content="Vision Journey｜未来ビジョンワーク"><meta property="og:description" content="理想の一日を描き、自分が大切にしている価値観と、これからの暮らしのヒントを見つけるワーク。"><meta property="og:type" content="website"><title>Vision Journey｜未来ビジョンワーク</title>
+<style>
+:root{--green:#45634f;--green2:#6f8975;--sage:#e7eee5;--cream:#faf8f2;--ink:#29362e;--muted:#718076;--line:#dce4da;--white:#fff;--gold:#d4b77a}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif;line-height:1.75}
+button,input,textarea{font:inherit}button{cursor:pointer}.shell{max-width:1050px;margin:auto;padding:22px 18px 60px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:24px}.brand{font-size:13px;letter-spacing:.12em;font-weight:800;color:var(--green)}.tag{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:5px 10px}
+.hero{background:linear-gradient(130deg,#e8efe5,#f5eee1);border-radius:28px;padding:34px clamp(20px,5vw,54px);position:relative;overflow:hidden}.hero:after{content:"✳";position:absolute;right:5%;top:0;font-size:160px;color:#ffffff80;line-height:1}.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--green);font-weight:800}.hero h1{font-size:clamp(27px,4vw,43px);line-height:1.35;margin:12px 0 14px;max-width:650px;position:relative;z-index:1}.hero p{max-width:650px;color:#526458;margin:0;position:relative;z-index:1}.hero .cta{margin-top:23px;position:relative;z-index:1}
+.btn{border:0;border-radius:14px;background:var(--green);color:#fff;padding:12px 19px;font-weight:700;box-shadow:0 5px 12px #314d381a}.btn:hover{background:#354f3d}.btn.secondary{background:#fff;color:var(--green);border:1px solid var(--line);box-shadow:none}.btn.ghost{background:transparent;color:var(--green);box-shadow:none;padding:8px 12px}.btn:disabled{opacity:.45;cursor:not-allowed}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:22px;margin-top:25px}.side{align-self:start;position:sticky;top:16px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px}.side h3{font-size:13px;margin:0 0 12px;color:var(--muted)}.step{display:flex;gap:10px;align-items:center;padding:10px 8px;border-radius:12px;color:var(--muted);font-size:14px}.step .num{width:27px;height:27px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:12px;flex-shrink:0}.step.active{background:var(--sage);color:var(--green);font-weight:700}.step.active .num{background:var(--green);color:#fff;border-color:var(--green)}.step.done .num{background:#d9e7d9;color:var(--green)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:22px;padding:clamp(20px,4vw,34px);min-width:0}.panel h2{font-size:24px;margin:0 0 5px}.sub{color:var(--muted);font-size:14px;margin:0 0 22px}.scene{padding:18px 0;border-top:1px solid var(--line)}.scene:first-of-type{border-top:0}.scene h3{font-size:16px;margin:0 0 12px;display:flex;gap:8px;align-items:center}.scene h3 span{font-size:11px;color:var(--green);background:var(--sage);padding:3px 9px;border-radius:99px}.field{margin:14px 0}.field label{display:block;font-weight:700;font-size:14px;margin-bottom:7px}.field small{display:block;color:var(--muted);font-weight:400;font-size:12px}.field textarea,.field input{width:100%;border:1px solid #d7e0d5;border-radius:12px;padding:12px 13px;background:#fcfdfb;color:var(--ink);outline:none}.field textarea{min-height:72px;resize:vertical}.field textarea:focus,.field input:focus{border-color:var(--green2);box-shadow:0 0 0 3px #78977e22}.progressrow{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin-bottom:8px}.bar{height:5px;background:#e8eee7;border-radius:99px;overflow:hidden;margin-bottom:24px}.bar div{height:100%;background:var(--green2);width:0;transition:.2s}.actions{display:flex;justify-content:space-between;gap:10px;margin-top:25px;flex-wrap:wrap}.hidden{display:none!important}.notice{font-size:12px;color:var(--muted);background:#f6f8f4;border-radius:12px;padding:12px 14px;margin-top:16px}.reporthead{background:linear-gradient(120deg,#e5eee3,#f7f0e4);padding:24px;border-radius:18px;margin-bottom:18px}.reporthead h2{font-size:26px}.pillrow{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}.pill{background:#fff;border:1px solid var(--line);border-radius:99px;padding:5px 11px;font-size:12px;color:var(--green)}.reportgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.reportcard{border:1px solid var(--line);border-radius:16px;padding:18px}.reportcard h3{font-size:15px;margin:0 0 8px}.reportcard p{margin:0;font-size:14px}.reportcard.wide{grid-column:1/-1}.labelsmall{font-size:11px;letter-spacing:.1em;color:var(--green);font-weight:800}.story{font-family:Georgia,"Noto Serif JP",serif;white-space:pre-wrap;font-size:15px;line-height:2;background:#fbfaf5;border-radius:16px;padding:22px;border:1px solid #ece8dc}.actionitem{padding:13px 0;border-bottom:1px solid var(--line);display:flex;gap:12px}.actionitem:last-child{border:0}.check{accent-color:var(--green);width:18px;height:18px;margin-top:5px}.footer{font-size:11px;color:var(--muted);text-align:center;margin-top:25px}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.side{position:static;padding:12px;display:flex;align-items:center;gap:5px;overflow:auto}.side h3{display:none}.step{white-space:nowrap;padding:7px}.step .num{width:24px;height:24px}.reportgrid{grid-template-columns:1fr}.reportcard.wide{grid-column:auto}.hero{padding:28px 22px}.hero:after{font-size:110px;right:-8px;top:10px}.panel{padding:20px}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="top"><div class="brand">✳ VISION JOURNEY</div><div class="tag">未来ビジョンワーク｜公開テスト版</div></header>
+  <section class="hero" id="welcome">
+    <div class="eyebrow">A JOURNEY TO YOUR FUTURE</div>
+    <h1>叶えたい未来を、<br>自分の言葉で見つける。</h1>
+    <p>理想の一日を具体的に描くことで、あなたが大切にしている価値観や、これから育てたい暮らしの輪郭を見つけていきます。正解はありません。今のあなたの感覚を、そのまま言葉にしてみてください。</p>
+    <div class="actions" style="justify-content:flex-start"><button class="btn cta" onclick="start()">ビジョンワークを始める　→</button><button class="btn secondary cta" onclick="showExample()">回答例を入れて、結果サンプルを見る</button></div>
+  </section>
+  <div class="layout hidden" id="workspace">
+    <aside class="side"><h3>YOUR JOURNEY</h3><div class="step active" data-step="0"><span class="num">1</span>理想の一日</div><div class="step" data-step="1"><span class="num">2</span>大切な価値観</div><div class="step" data-step="2"><span class="num">3</span>ストーリーを磨く</div><div class="step" data-step="3"><span class="num">4</span>価値観と助言</div><div class="step" data-step="4"><span class="num">5</span>人生を一枚に</div></aside>
+    <main class="panel">
+      <div id="inputStep">
+        <div class="progressrow"><span id="progressLabel">STEP 1 / 2</span><span id="progressPercent">0% 入力済み</span></div><div class="bar"><div id="progressBar"></div></div>
+        <div id="formScenes">
+          <h2>理想の一日を描く</h2><p class="sub">未来の一日を、すでに叶ったことのように想像してみましょう。短い言葉でも大丈夫です。</p>
+          <section class="scene"><h3>朝のシーン <span>START</span></h3>
+            <div class="field"><label>どこで目覚めていますか？</label><textarea data-key="place" placeholder="例：森と山並みが見える、小さな家"></textarea></div>
+            <div class="field"><label>誰と、またはどんな存在と過ごしていますか？</label><textarea data-key="company" placeholder="例：ひとりで静かに／気心の知れた人と"></textarea></div>
+            <div class="field"><label>朝のルーティンは？</label><textarea data-key="morning" placeholder="例：自分で淹れたお茶、散歩、ゆっくり朝食"></textarea></div>
+            <div class="field"><label>そのとき、どんな気持ちですか？</label><textarea data-key="morningFeel" placeholder="例：清々しい、自分の一日を自分で選べる感覚"></textarea></div>
+          </section>
+          <section class="scene"><h3>仕事のシーン <span>CREATE</span></h3>
+            <div class="field"><label>どんな仕事・活動をしていますか？</label><textarea data-key="work" placeholder="例：地域の人と新しい企画を形にしている"></textarea></div>
+            <div class="field"><label>どこで、どんなペースで働いていますか？</label><textarea data-key="workplace" placeholder="例：場所や時間を自分で選び、集中と休息を切り替える"></textarea></div>
+            <div class="field"><label>誰に、どんな価値を届けていますか？</label><textarea data-key="people" placeholder="例：地域の企業や、暮らしをよくしたい人たち"></textarea></div>
+            <div class="field"><label>仕事の中で感じていることは？</label><textarea data-key="workFeel" placeholder="例：好奇心、手応え、誰かと創る喜び"></textarea></div>
+          </section>
+          <section class="scene"><h3>プライベート・旅 <span>EXPLORE</span></h3>
+            <div class="field"><label>休日はどう過ごしていますか？</label><textarea data-key="holiday" placeholder="例：畑やクラフト、芸術に触れて過ごす"></textarea></div>
+            <div class="field"><label>どこへ出かけ、何に触れていますか？</label><textarea data-key="travel" placeholder="例：初めての土地を歩き、文化や食を体験する"></textarea></div>
+            <div class="field"><label>一番幸せを感じる瞬間は？</label><textarea data-key="happy" placeholder="例：五感が満たされ、心からおいしいと思う食事"></textarea></div>
+          </section>
+          <section class="scene"><h3>夜のシーン <span>REST</span></h3>
+            <div class="field"><label>夜はどんなふうに過ごしていますか？</label><textarea data-key="night" placeholder="例：好きな音楽と飲み物、読書、静かな時間"></textarea></div>
+            <div class="field"><label>一日を終える自分に、どんな言葉をかけますか？</label><textarea data-key="selftalk" placeholder="例：今日も自分らしい時間を過ごせたね"></textarea></div>
+            <div class="field"><label>明日をどんな気持ちで迎えますか？</label><textarea data-key="tomorrow" placeholder="例：明日は何を試そう、と少し楽しみ"></textarea></div>
+          </section>
+          <div class="actions"><button class="btn secondary" onclick="saveDraft()">入力内容を保存</button><button class="btn secondary" onclick="clearDraft()">入力内容を消去</button><button class="btn" onclick="analyze()">回答を分析する　→</button></div>
+          <div class="notice">プライバシーについて：入力内容はこのページ内で処理され、外部サーバーには送信されません。入力内容を保存する場合も、このブラウザのセッション内に限られます。共有端末では利用後に「入力内容を消去」してください。氏名・連絡先など、個人を特定できる情報は入力しないでください。</div>
+        </div>
+      </div>
+      <div id="results" class="hidden"></div>
+    </main>
+  </div>
+  <div class="footer">VISION JOURNEY · あなたの未来に、あなたの言葉で近づく<br>このツールは自己理解のための振り返り用です。表示される価値観・助言は回答中の言葉を手がかりにした参考情報であり、心理診断や専門的助言ではありません。<br>公開テスト版｜AIによる自動生成機能・個別画像生成機能は未接続です。</div>
+</div>
+<script>
+const keys={place:"目覚める場所",company:"一緒に過ごす存在",morning:"朝の習慣",morningFeel:"朝の感情",work:"仕事・活動",workplace:"働く場所とペース",people:"届ける価値",workFeel:"仕事の感情",holiday:"休日の過ごし方",travel:"旅・新しい体験",happy:"幸せを感じる瞬間",night:"夜の過ごし方",selftalk:"自分への言葉",tomorrow:"明日への気持ち"};
+let current=0, answers={}, savedStoryText='', savedRevisionText='';
+function start(){document.getElementById('welcome').classList.add('hidden');document.getElementById('workspace').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});restore()}
+function restore(){try{let a=JSON.parse(sessionStorage.getItem('visionDraft')||'{}');answers={...answers,...a};document.querySelectorAll('[data-key]').forEach(el=>el.value=answers[el.dataset.key]||'')}catch(e){} updateProgress()}
+function saveDraft(){collect();sessionStorage.setItem('visionDraft',JSON.stringify(answers));alert('入力内容をこのブラウザのセッションに保存しました。') }
+function clearDraft(){if(!confirm('入力内容をすべて消去します。よろしいですか？'))return;answers={};sessionStorage.removeItem('visionDraft');document.querySelectorAll('[data-key]').forEach(el=>el.value='');const r=document.getElementById('revisionNote');if(r)r.value='';const m=document.getElementById('lifeMotto');if(m)m.value='';const p=document.getElementById('imagePrompt');if(p)p.value='';const a=document.getElementById('myAction');if(a)a.value='';updateProgress();alert('入力内容を消去しました。');}
+function collect(){document.querySelectorAll('[data-key]').forEach(el=>answers[el.dataset.key]=el.value.trim());}
+function updateProgress(){collect();let filled=Object.values(answers).filter(Boolean).length;let pct=Math.round(filled/15*100);document.getElementById('progressPercent').textContent=pct+'% 入力済み';document.getElementById('progressBar').style.width=pct+'%'}
+document.querySelectorAll('[data-key]').forEach(el=>el.addEventListener('input',updateProgress));
+const groups={
+"自由・自分で選ぶ":["自由","選択","自分で","裁量","ペース","フリー","独立","決め"],
+"創造・実現":["創る","つくる","形","アイディア","企画","創作","クラフト","生み","実現","表現"],
+"自然・五感":["自然","森","山","畑","植物","土","香り","音","光","五感","風","川","海"],
+"つながり・貢献":["人","地域","誰か","届け","貢献","支える","一緒","共感","企業","仲間","家族"],
+"探究・冒険":["旅","知らない","初めて","文化","学び","好奇心","挑戦","発見","体験","新しい"],
+"安心・余白":["静か","安心","穏やか","余白","ゆっくり","休息","癒し","落ち着","満た","自由な時間"]
+};
+function escapeHTML(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function analyze(){
+ if(document.getElementById('storyText')) savedStoryText=document.getElementById('storyText').value;
+ if(document.getElementById('revisionNote')) savedRevisionText=document.getElementById('revisionNote').value;
+ collect();let missing=Object.values(answers).filter(Boolean).length;if(missing<4){if(!confirm('まだ回答が少ないようです。4項目以上の回答があると、より具体的な分析になります。このまま進みますか？'))return}
+let corpus=Object.values(answers).join(' '), scores=Object.entries(groups).map(([name,words])=>({name,score:words.reduce((n,w)=>n+(corpus.match(new RegExp(w,'g'))||[]).length,0)})).sort((a,b)=>b.score-a.score);
+let top=scores.filter(x=>x.score>0).slice(0,3);if(!top.length)top=[{name:'自分らしい充実',score:1}];
+let work=answers.work||'自分が大切だと思う活動', place=answers.place||'心地よい場所', morning=answers.morning||'自分を整える朝の習慣', night=answers.night||'心が落ち着く夜の時間', holiday=answers.holiday||'好きなことを味わう休日';
+let feeling=[answers.morningFeel,answers.workFeel,answers.tomorrow].filter(Boolean).join('、')||'自分にとって心地よい感覚';
+let summary=top.map(x=>x.name).join('・');
+let hypotheses={
+'自由・自分で選ぶ':'自分で選び、納得して決められる余地があること。時間や場所、進め方への裁量が満足感につながる可能性があります。',
+'創造・実現':'アイディアが具体的な形になっていく手応え。考えるだけでなく、小さく試し、変化を確かめる過程に喜びがある可能性があります。',
+'自然・五感':'景色、香り、手触り、食など、身体で感じる体験。頭だけで考え続けるより、感覚に戻る時間が自分を整える助けになる可能性があります。',
+'つながり・貢献':'人や地域との関係、誰かに価値が届く実感。ひとりで完結することより、持ち味を持ち寄って何かを生み出すことが大切なのかもしれません。',
+'探究・冒険':'未知の場所や考え方に触れること。新鮮な視点を得る体験が、日常に彩りや次の発想をもたらす可能性があります。',
+'安心・余白':'急かされず、自分の感覚を確かめられる時間。成果だけでなく、余裕や穏やかさも暮らしを選ぶ大切な基準になりそうです。'
+};
+let values=top.map(x=>`<span class="pill">${escapeHTML(x.name)}</span>`).join('');
+let insight=top.map(x=>`<div class="reportcard"><h3>${escapeHTML(x.name)}</h3><p>${hypotheses[x.name]}</p></div>`).join('');
+let allAnswers=Object.entries(answers).filter(([k,v])=>v).map(([k,v])=>`${keys[k]}：${v}`).join('\n');
+let story=`朝、${place}で目を覚ます。\n\n${answers.morningFeel?'そのときの気持ちは、'+answers.morningFeel+'。':''}${morning}から一日が始まる。窓の向こうの光や空気を感じながら、今日をどう過ごすか、自分の感覚に耳を澄ませる。\n\n日中は、${work}。${answers.workplace||'自分に合った場所とペース'}で取り組み、${answers.people||'自分が価値を届けたい人たち'}との関わりの中で、一つずつ形にしていく。${answers.workFeel||'自分なりの手応え'}を感じられる瞬間が、今日を彩っている。\n\n休日のような余白には、${holiday}。${answers.travel||'見慣れない景色や新しい体験'}にも心をひらき、${answers.happy||'自分が本当に満たされる瞬間'}を味わう。\n\n夜は、${night}。一日の出来事を振り返りながら、${answers.selftalk||'今日の自分をねぎらう言葉'}をかける。\n\n明日を迎える気持ちは、${answers.tomorrow||'また自分らしい一日を選んでいけるという静かな期待'}。\n\n理想の未来は、遠くにある完成形だけではない。今日の選択の中に、その一部を小さく迎え入れることから始まっていく。`;
+let actions=[
+`「${top[0].name}」を感じられる行動を、今週15分だけ試す。`,
+`理想の一日と今の暮らしを見比べ、変えたいことをひとつだけ書き出す。`,
+`今日の終わりに「心が少し満たされた瞬間」を一行メモする。`
+];
+document.getElementById('inputStep').classList.add('hidden');let r=document.getElementById('results');r.classList.remove('hidden');
+r.innerHTML=`<div class="reporthead"><div class="labelsmall">STEP 2 / STORY REFINEMENT</div><h2>読んで、心が動くストーリーに</h2><p>まずは、読んだときの自分の反応を手がかりに、ストーリーを整えます。「正しい文章」より「自分らしい文章」を大切に。</p><div class="pillrow">${values}</div></div>
+<div class="field"><label>あなたの「理想が叶った一日」</label><small>文章は直接編集できます。下の観点から修正したいところを選んで、依頼内容を入力してください。</small><textarea id="storyText" style="min-height:300px;line-height:2">${escapeHTML(story)}</textarea></div>
+<div class="reportgrid">
+<div class="reportcard"><h3>😊 読んでてニヤけた？</h3><p>OK、そのままでいい。心が動いた表現を残しましょう。</p><button class="btn secondary" style="margin-top:12px" onclick="setRevision('この部分は自分らしく、読んでいてうれしくなるので残してください。')">このままでOK</button></div>
+<div class="reportcard"><h3>🪞「私っぽくないな」</h3><p>口調や表現を、自分らしい言葉に近づける。</p><button class="btn secondary" style="margin-top:12px" onclick="setRevision('私らしくない表現があります。気取らず自然な口調で、私自身が話しそうな言葉に直してください。')">口調・表現を修正</button></div>
+<div class="reportcard"><h3>✂️「このシーンはいらない」</h3><p>不要な場面を削除したり、別の場面に差し替えたりする。</p><button class="btn secondary" style="margin-top:12px" onclick="setRevision('不要だと感じるシーンを削除し、必要なら私が本当に望む場面に差し替えてください。')">削除・差し替え</button></div>
+<div class="reportcard"><h3>🌱「ここをもっと膨らませたい！」</h3><p>五感や気持ち、場面のディテールを追加する。</p><button class="btn secondary" style="margin-top:12px" onclick="setRevision('この場面をもっと膨らませてください。五感、気持ち、周囲の景色や小さな動作を具体的に描いてください。')">場面を膨らませる</button></div>
+</div>
+<div class="field"><label>修正依頼・気づいたこと</label><textarea id="revisionNote" placeholder="例：仕事の場面は会議より、地域の人と一緒に試作している場面にしたい。朝の静けさをもっと描いてほしい。"></textarea><small>試作版では、ここに依頼を記録しながら文章を手動で編集できます。本格版では、この指示をAIに送り、ストーリーを再生成します。</small></div>
+<div class="actions"><button class="btn secondary" onclick="backToEdit()">← ステップ1に戻って回答を修正</button><button class="btn secondary" onclick="saveDraft()">入力内容を保存</button><button class="btn" onclick="toAnalysis()">このストーリーで次へ →</button></div>
+<div class="notice">この段階では「自分らしいか」を本人が決めます。AIの提案をそのまま採用する必要はありません。</div>
+<div id="analysisSection" class="hidden" style="margin-top:30px"><div class="reporthead"><div class="labelsmall">STEP 3 / PERSONAL INSIGHT</div><h2>この人生で、大切にしていること</h2><p>回答と、あなたが磨いたストーリーを手がかりに、大切にしている価値観を5つほど整理します。断定的な診断ではなく、自分自身を理解するための仮説です。</p></div>
+<div id="valuesList" class="reportgrid"></div>
+<div style="margin-top:25px"><div class="labelsmall">ADVICE FOR YOUR NEXT CHAPTER</div><h2 style="margin:5px 0 12px">これからの生き方へのヒント</h2><p class="sub">理想を一気に叶えるのではなく、日々の選択に少しずつ取り入れるための提案です。</p><div id="adviceList" class="reportcard"></div></div>
+<div style="margin-top:28px"><div class="labelsmall">YOUR LIFE IN ONE IMAGE</div><h2 style="margin:5px 0 12px">あなたの人生を、一枚のイラストに</h2><p class="sub">価値観と未来のストーリーを象徴するイメージです。この公開テスト版では、イラストは共通のサンプルを表示します。</p>
+<div id="lifeIllustration" style="border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#eef1e7"><svg viewBox="0 0 800 420" role="img" aria-label="未来の暮らしを象徴する森と山、家のイラスト" style="display:block;width:100%;height:auto"><defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f5e9d4"/><stop offset="1" stop-color="#dce9df"/></linearGradient></defs><rect width="800" height="420" fill="url(#sky)"/><circle cx="620" cy="95" r="42" fill="#f4d79c" opacity=".9"/><path d="M0 235 L130 110 L245 230 L360 92 L525 245 L640 130 L800 245 V420 H0Z" fill="#a6bda8"/><path d="M0 280 L155 180 L290 300 L455 165 L610 290 L735 190 L800 250 V420 H0Z" fill="#718f79"/><path d="M0 320 Q150 260 300 330 T600 310 T800 320 V420 H0Z" fill="#526f59"/><path d="M80 420 Q220 340 350 420" stroke="#d5c8a4" stroke-width="48" fill="none" stroke-linecap="round"/><g transform="translate(405 215)"><rect x="0" y="65" width="142" height="100" rx="3" fill="#f7f0df"/><path d="M-16 70 L70 0 L158 70Z" fill="#876e56"/><rect x="18" y="91" width="34" height="35" fill="#a8c4c2"/><rect x="88" y="91" width="34" height="74" fill="#9d8267"/><circle cx="112" cy="128" r="3" fill="#f6e5b5"/></g><g fill="#3f654c"><path d="M110 335 l-35 75 h70z"/><path d="M110 300 l-29 60 h58z"/><rect x="105" y="365" width="10" height="35"/><path d="M660 315 l-40 85 h80z"/><path d="M660 275 l-31 65 h62z"/><rect x="655" y="360" width="10" height="40"/></g><g fill="#fff7e7" opacity=".85"><circle cx="255" cy="80" r="3"/><circle cx="300" cy="115" r="2"/><circle cx="570" cy="165" r="3"/><circle cx="190" cy="165" r="2"/></g></svg></div>
+<div class="field"><label>この人生を一言で表すなら？</label><input id="lifeMotto" placeholder="例：自然と創造を楽しみ、自分のリズムで地域とつながる人生"></div><div class="field"><label>イラストに入れたい要素・雰囲気</label><textarea id="imagePrompt" placeholder="例：森と山、朝の光、小さな家、畑。やわらかい水彩タッチ、人物は後ろ姿"></textarea></div>
+<div class="actions"><button class="btn secondary" onclick="backToEdit()">← ステップ1に戻って回答を修正</button><button class="btn secondary" onclick="downloadReport()">レポートを保存</button><button class="btn" onclick="copyFull()">分析・助言・一言をコピー →</button></div></div></div>`;
+if(savedStoryText){document.getElementById('storyText').value=savedStoryText;}
+if(savedRevisionText){document.getElementById('revisionNote').value=savedRevisionText;}
+document.querySelectorAll('.step').forEach((e,i)=>{e.classList.toggle('active',i===2);e.classList.toggle('done',i<2)});window.scrollTo({top:0,behavior:'smooth'});
+}
+
+
+function showExample(){
+  const example={
+    place:'森と山並みが見える高原の小さな家。窓の向こうには菜園と果樹が広がっている。',
+    company:'朝はひとりで静かに過ごし、自分の感覚を整える。',
+    morning:'自分で淹れたハーブティーを飲み、窓辺で軽くヨガをする。畑の様子を見に行き、朝露や土の香りを感じる。',
+    morningFeel:'清々しい。今日一日の優先権を自分が持っている感じ。',
+    work:'地域の資源や産業を生かした新しい企画を考え、大学・企業・地域の人たちと一緒に小さく試し、形にしている。',
+    workplace:'自然の近くを拠点に、集中する時間と人に会う時間を自分で組み立てる。オンラインと現地を行き来し、無理のないペースで働く。',
+    people:'地域の人、企業、大学、自治体など。地域にある価値を見つけ、必要とする人につなぐ。',
+    workFeel:'好奇心が刺激される。アイデアが具体的な形になり、誰かの次の一歩につながる手応えがある。',
+    holiday:'菜園で野菜やハーブを育て、収穫したものを料理や保存食、クラフトにする。気になる本や映画にもゆっくり触れる。',
+    travel:'まだ知らない土地を歩き、その土地ならではの食や文化、自然の風景に触れる。地域の人の暮らしや仕事を知る。',
+    happy:'採れたての野菜を使った食事がおいしいと感じる瞬間。香りや味、風、光を全身で味わい、心が満たされる。',
+    night:'好きな音楽を流し、おいしい食事と一杯のお酒を楽しむ。クラシック音楽やお香の香りの中で、静かな時間を過ごす。',
+    selftalk:'今日も自分で選び、面白いと思うことを少し形にできたね。急がず、試しながら育てていこう。',
+    tomorrow:'明日はどんな発見があるだろう。自分の感覚を大切にしながら、新しいことをひとつ試してみたい。'
+  };
+  answers={...example};
+  document.getElementById('welcome').classList.add('hidden');
+  document.getElementById('workspace').classList.remove('hidden');
+  document.querySelectorAll('[data-key]').forEach(el=>el.value=example[el.dataset.key]||'');
+  updateProgress();
+  analyze();
+  const revision=document.getElementById('revisionNote');
+  if(revision) revision.value='朝の高原の空気、土やハーブの香りをもう少し具体的に。仕事は「会議」より、地域の人と小さく試作している場面を中心に。ひとりで自分のリズムをつくる時間も残す。';
+  toAnalysis();
+  const motto=document.getElementById('lifeMotto');
+  const prompt=document.getElementById('imagePrompt');
+  if(motto) motto.value='自然と創造を楽しみ、自分のリズムで地域とつながる人生';
+  if(prompt) prompt.value='森と山並みが見える高原の小さな家、朝のやわらかな光、菜園と果樹、ハーブ、土に触れる手、地域の人とアイデアを形にする小さな作業風景。柔らかな水彩タッチ、セージグリーンとベージュ、人物は後ろ姿で顔は見せない。';
+  const head=document.querySelector('#results .reporthead');
+  if(head){const note=document.createElement('div');note.className='notice';note.textContent='サンプル表示：架空の回答例をもとに、ストーリー・価値観・助言・一言を表示しています。';head.appendChild(note)}
+}
+
+function setRevision(text){const el=document.getElementById('revisionNote');el.value=(el.value?el.value+'\n':'')+text;el.focus()}
+function toAnalysis(){
+ const storyText=document.getElementById('storyText').value;
+ const corpus=(Object.values(answers).join(' ')+' '+storyText+' '+(document.getElementById('revisionNote').value||''));
+ const found=Object.entries(groups).map(([name,words])=>({name,score:words.reduce((n,w)=>n+(corpus.match(new RegExp(w,'g'))||[]).length,0)})).sort((a,b)=>b.score-a.score);
+ let chosen=found.filter(x=>x.score>0).slice(0,5);if(chosen.length<5){['自由・自分で選ぶ','創造・実現','自然・五感','つながり・貢献','探究・冒険','安心・余白'].forEach(n=>{if(chosen.length<5&&!chosen.some(x=>x.name===n))chosen.push({name:n,score:0})})}
+ const descriptions={
+ '自由・自分で選ぶ':'自分で選択し、納得して決められる余地を大切にしている可能性。時間・場所・進め方に自分の意思を反映できることが、充実感につながりそうです。',
+ '創造・実現':'アイディアを具体的な形にし、試しながら育てることを大切にしている可能性。完成だけでなく、つくる過程そのものにも喜びがありそうです。',
+ '自然・五感':'景色や香り、手触り、食など、身体で感じる体験を大切にしている可能性。自然や感覚に戻る時間が、自分を整える支えになりそうです。',
+ 'つながり・貢献':'人や地域とのつながり、誰かに価値が届く実感を大切にしている可能性。互いの持ち味を持ち寄ることで、力が発揮されそうです。',
+ '探究・冒険':'新しい場所や考え方に触れ、視点を更新することを大切にしている可能性。未知との出会いが、好奇心や次の発想を育てそうです。',
+ '安心・余白':'急かされず、自分の感覚を確かめる時間を大切にしている可能性。成果と同じくらい、余裕や穏やかさも選択の基準になりそうです.'};
+ document.getElementById('valuesList').innerHTML=chosen.map((x,i)=>`<div class="reportcard"><div class="labelsmall">VALUE 0${i+1}</div><h3>${escapeHTML(x.name)}</h3><p>${descriptions[x.name]}</p></div>`).join('');
+ const advice={
+ '自由・自分で選ぶ':'予定の中に「自分で決める時間」を先に確保する。小さな選択から、自分の意思を反映させる。',
+ '創造・実現':'完成を待たず、試作品や小さな実験をひとつ始める。試した結果を振り返り、次の工夫につなげる。',
+ '自然・五感':'週に一度、自然や手仕事に触れる時間を予定に入れる。香り・光・手触りなど、心地よさを具体的に味わう。',
+ 'つながり・貢献':'大切にしたい相手や地域と、小さな協働を試す。相手の期待だけでなく、自分が無理なく続けられる形も確認する。',
+ '探究・冒険':'月に一度、いつもと違う場所・本・体験を選ぶ。そこで得た発見をメモし、日常の選択にひとつ持ち帰る。',
+ '安心・余白':'予定を詰めすぎない余白を先に確保する。休むことを「何もしない時間」ではなく、感覚を取り戻す時間として扱う.'};
+ document.getElementById('adviceList').innerHTML=chosen.map((x,i)=>`<div class="actionitem"><span class="pill">${i+1}</span><div>${escapeHTML(advice[x.name])}</div></div>`).join('');
+ const motto=document.getElementById('lifeMotto');if(!motto.value)motto.value=chosen.slice(0,3).map(x=>x.name.split('・')[0]).join('・')+'を大切に、自分らしいリズムで育てる人生';
+ document.getElementById('analysisSection').classList.remove('hidden');document.getElementById('analysisSection').scrollIntoView({behavior:'smooth',block:'start'});
+ document.querySelectorAll('.step').forEach((e,i)=>{e.classList.toggle('active',i===3);e.classList.toggle('done',i<3)});
+}
+
+function backToEdit(){
+ collect();
+ if(document.getElementById('storyText')) savedStoryText=document.getElementById('storyText').value;
+ if(document.getElementById('revisionNote')) savedRevisionText=document.getElementById('revisionNote').value;
+ sessionStorage.setItem('visionDraft',JSON.stringify(answers));
+ document.querySelectorAll('[data-key]').forEach(el=>{el.value=answers[el.dataset.key]||''});
+ document.getElementById('results').classList.add('hidden');document.getElementById('inputStep').classList.remove('hidden');
+ document.querySelectorAll('.step').forEach((e,i)=>{e.classList.toggle('active',i===0);e.classList.remove('done')});
+ updateProgress();window.scrollTo({top:0,behavior:'smooth'});
+}
+function copyStory(){let t=document.getElementById('storyText').value;navigator.clipboard?.writeText(t).then(()=>alert('ストーリーをコピーしました')).catch(()=>fallbackCopy(t))}
+function fallbackCopy(t){let a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();alert('コピーしました')}
+function copyFull(){let t='【未来のストーリー】\n'+(document.getElementById('storyText')?.value||'')+'\n\n【修正依頼】\n'+(document.getElementById('revisionNote')?.value||'')+'\n\n【この人生を一言で】\n'+(document.getElementById('lifeMotto')?.value||'')+'\n\n【自分で決める一歩】\n'+(document.getElementById('myAction')?.value||'');fallbackCopy(t)}
+function downloadReport(){let t='AIビジョンワーク｜個別レポート\n\n【回答】\n'+Object.entries(answers).filter(([k,v])=>v).map(([k,v])=>keys[k]+'：'+v).join('\n')+'\n\n【未来のストーリー】\n'+document.getElementById('storyText').value+'\n\n【修正依頼】\n'+(document.getElementById('revisionNote')?.value||'')+'\n\n【この人生を一言で】\n'+(document.getElementById('lifeMotto')?.value||'')+'\n\n【自分で決める一歩】\n'+(document.getElementById('myAction')?.value||'');let blob=new Blob([t],{type:'text/plain;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='vision-work-report.txt';a.click();URL.revokeObjectURL(url)}
+</script>
+</body></html>
