@@ -124,13 +124,14 @@ button,input,textarea{font:inherit}button{cursor:pointer}.shell{max-width:1050px
 
       <!-- STEP 5 -->
       <div id="s5" class="hidden">
-        <div class="reporthead"><div class="labelsmall">STEP 5 / YOUR LIFE IN ONE IMAGE</div><h2>あなたの人生を、一枚のイラストに</h2><p>価値観と未来のストーリーを象徴する一枚を、ChatGPTに描いてもらいます。スマホの壁紙や手帳に貼って、毎日目に入るようにしましょう。</p></div>
-        <div class="field"><label for="lifeMotto">この人生を一言で表すなら？</label><small>ステップ4の結果から自動で入ります。自分の言葉に書き換えてもOKです。</small><input id="lifeMotto" placeholder="例：自然と創造を楽しみ、自分のリズムで地域とつながる人生"></div>
-        <div class="field"><label for="imagePrompt">画像用の依頼文</label><small>ステップ4の結果から自動で入ります。入れたい要素や雰囲気を書き足せます。</small><textarea id="imagePrompt" style="min-height:120px"></textarea></div>
-        <div class="btnrow"><button class="btn" onclick="copyPrompt('image')">依頼文をコピー</button><a class="btn secondary" href="https://chatgpt.com/" target="_blank" rel="noopener">ChatGPTを開く ↗</a></div>
+        <div class="reporthead"><div class="labelsmall">STEP 5 / YOUR LIFE IN ONE IMAGE</div><h2>あなたの人生を、一枚のイラストに</h2><p>理想の一日の風景に、「この人生を一言で」「大切にしている価値観」「これからのヒント」の言葉を書き込んだビジョンボードを、ChatGPTに描いてもらいます。スマホの壁紙や手帳に貼って、毎日目に入るようにしましょう。</p></div>
+        <div class="notice hidden" id="imgWarn" style="margin:0 0 14px">ステップ4の分析結果がまだ表示されていないため、価値観とヒントの言葉が入っていません。先にステップ4で結果を貼り付けると、自動で入ります。</div>
+        <div class="field"><label for="lifeMotto">この人生を一言で表すなら？</label><small>ステップ4の結果から自動で入ります。書き換えると、下の依頼文のタイトルも変わります。</small><input id="lifeMotto" placeholder="例：自然と創造を楽しみ、自分のリズムで地域とつながる人生"></div>
+        <div class="field"><label for="imagePrompt">画像用の依頼文</label><small>理想の一日の場面と、一言・価値観・ヒントの言葉が自動で入ります。入れたい要素や雰囲気を書き足せます。</small><textarea id="imagePrompt" style="min-height:220px"></textarea></div>
+        <div class="btnrow"><button class="btn" onclick="copyPrompt('image')">依頼文をコピー</button><a class="btn secondary" href="https://chatgpt.com/" target="_blank" rel="noopener">ChatGPTを開く ↗</a><button class="btn ghost" onclick="rebuildImagePrompt()">最新の内容で作り直す</button></div>
         <div class="field" style="margin-top:22px"><label for="imgFile">できた画像を見る（任意）</label><small>ChatGPTで作った画像をスマホに保存したら、ここで選ぶと一言と並べて表示できます。画像はどこにも送られず、ページを閉じると消えます。</small><input id="imgFile" type="file" accept="image/*" onchange="showImage(this)"></div>
         <div id="board" class="hidden" style="display:grid;gap:12px;margin-top:8px"><div class="imgwrap"><img id="boardImg" alt="あなたの人生を表す一枚"></div><div class="motto" id="boardMotto"></div></div>
-        <div class="notice"><strong>画像がイメージと違ったら</strong>　「もっと朝の光を柔らかく」「畑を手前に大きく」など、ChatGPTに何度でも追加でお願いしてOKです。</div>
+        <div class="notice"><strong>画像がイメージと違ったら</strong>　「もっと朝の光を柔らかく」「畑を手前に大きく」など、ChatGPTに何度でも追加でお願いしてOKです。<br><strong>文字が間違っていたら</strong>　「タイトルの文字を『〇〇』に正確に直して」のように、正しい言葉をそのまま伝えて直してもらいましょう。</div>
         <div class="actions"><button class="btn secondary" onclick="go(4)">← 戻る</button><div class="btnrow"><button class="btn secondary" onclick="downloadReport()">レポートを保存</button><button class="btn" onclick="copyFull()">結果をまとめてコピー</button></div></div>
       </div>
 
@@ -148,7 +149,8 @@ const STORE='visionJourney.v2';
 let st={answers:{},story:'',prevStory:'',revision:'',analysisRaw:'',analysis:null,motto:'',imagePrompt:'',step:1};
 
 /* ---------- storage ---------- */
-function load(){try{const s=JSON.parse(localStorage.getItem(STORE)||'null');if(s)st=Object.assign(st,s);}catch(e){}}
+function load(){try{const s=JSON.parse(localStorage.getItem(STORE)||'null');if(s)st=Object.assign(st,s);}catch(e){}
+  if(st.analysis&&Array.isArray(st.analysis.hints))st.analysis.hints=st.analysis.hints.map(h=>typeof h==='string'?{title:'',text:h}:h);}
 let saveTimer;function save(){clearTimeout(saveTimer);saveTimer=setTimeout(()=>{try{localStorage.setItem(STORE,JSON.stringify(st));}catch(e){}},200);}
 function $(id){return document.getElementById(id)}
 function toast(t){const el=$('toast');el.textContent=t;el.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove('show'),1900)}
@@ -165,7 +167,8 @@ function go(n){
   if(n===2){$('p-story').textContent=storyPrompt();$('storyPaste').value=st.story||''}
   if(n===3){$('storyText').value=st.story||'';$('revisionNote').value=st.revision||'';$('undoBtn').classList.toggle('hidden',!st.prevStory)}
   if(n===4){$('p-analysis').textContent=analysisPrompt();$('analysisPaste').value=st.analysisRaw||'';renderAnalysis()}
-  if(n===5){$('lifeMotto').value=st.motto||'';$('imagePrompt').value=st.imagePrompt||defaultImagePrompt();updateBoardMotto()}
+  if(n===5){$('lifeMotto').value=st.motto||'';if(!st.imageEdited||!st.imagePrompt)st.imagePrompt=buildImagePrompt();$('imagePrompt').value=st.imagePrompt;
+    $('imgWarn').classList.toggle('hidden',!!(st.analysis&&st.analysis.values.length));updateBoardMotto();save()}
   window.scrollTo({top:0,behavior:'smooth'});
 }
 function isDone(k){if(k===1)return filledCount()===TOTAL;if(k===2||k===3)return !!st.story;if(k===4)return !!st.analysisRaw;return false}
@@ -221,21 +224,18 @@ return `あなたは、生き方やキャリアの振り返りを支える、あ
 これらを手がかりに、この人が大切にしている価値観を読み解いてください。
 診断や断定ではなく、本人が自分を理解するための「仮説」として、やさしく前向きな言葉で書いてください。
 
-次の4つの見出しと形式を必ず守ってください。見出しの文字は変えず、前置きやまとめの文は書かないでください。
+次の3つの見出しと形式を必ず守ってください。見出しの文字は変えず、前置きやまとめの文は書かないでください。
 
 【大切にしている価値観】
-1. 価値観の名前（10字程度）｜そう考えた理由（回答やストーリーの言葉を引用しながら2〜3文）
+1. 価値観の名前（10字以内）｜そう考えた理由（回答やストーリーの言葉を引用しながら2〜3文）
 （同じ形式で5つ）
 
 【これからのヒント】
-1. 今の暮らしの中で、今週〜今月から試せる小さな行動（1〜2文）
+1. 短い見出し（12字以内）｜今の暮らしの中で、今週〜今月から試せる小さな行動（1〜2文）
 （同じ形式で3〜5つ）
 
 【この人生を一言で】
-（30字以内の一文）
-
-【画像用の依頼文】
-（このストーリーと価値観を象徴する1枚のイラストを、画像生成AIに頼むための日本語の依頼文。場所・時間帯・光・色・象徴的なモチーフを具体的に書き、「柔らかな水彩タッチ」「人物は後ろ姿で顔は描かない」「縦長9:16（スマホの壁紙サイズ）」を含める）
+（25字以内の一文）
 
 ---
 【理想の一日の回答】
@@ -244,15 +244,39 @@ ${answersText()||'（まだ回答がありません）'}
 【ストーリー】
 ${st.story||'（まだストーリーがありません）'}`;
 }
-function defaultImagePrompt(){
-  const a=st.answers;
-  return `以下のイメージで、私の理想の人生を象徴するイラストを1枚描いてください。
-・場所：${a.place||'心地よい場所'}
-・印象的な場面：${a.happy||a.work||'自分らしく過ごしている時間'}
-・雰囲気：${[a.morningFeel,a.workFeel,a.tomorrow].filter(Boolean).join('、')||'穏やかで、未来が楽しみな気持ち'}
+function short(s,n){s=String(s||'').replace(/\s+/g,' ').trim();return s.length>n?s.slice(0,n)+'…':s}
+function buildImagePrompt(){
+  const a=st.answers, an=st.analysis||{values:[],hints:[]};
+  const motto=(st.motto||'').trim();
+  const values=(an.values||[]).map(v=>v.name).filter(Boolean).slice(0,5);
+  const hints=(an.hints||[]).map(h=>h.title||short(h.text,14)).filter(Boolean).slice(0,5);
+  const scene=(label,parts)=>{const t=parts.filter(Boolean).map(x=>short(x,60)).join('／');return t?`・${label}：${t}`:''};
+  const scenes=[
+    scene('朝',[a.place,a.company,a.morning]),
+    scene('仕事',[a.work,a.workplace,a.people]),
+    scene('休日・旅',[a.holiday,a.travel,a.happy]),
+    scene('夜',[a.night,a.selftalk])
+  ].filter(Boolean).join('\n');
+  const feel=[a.morningFeel,a.workFeel,a.tomorrow].filter(Boolean).map(x=>short(x,40)).join('／');
+  return `私の「理想の一日」と、大切にしている価値観をまとめた、1枚のビジョンボード（ポスター）の画像を作ってください。
+
+■ 絵の内容（理想の一日）
+画面の中央に、次の4つの場面を、朝から夜へ流れるようにひとつながりの風景として描いてください。
+${scenes||'・自分らしく、心地よく過ごしている一日'}
+雰囲気：${feel||'穏やかで、明日が楽しみな気持ち'}
+
+■ 画像の中に入れる文字（日本語。一字一句このとおりに、誤字なく正確に）
+・いちばん上にタイトルとして大きく：「${motto||'（ここに人生を一言で）'}」
+・「大切にしている価値観」という見出しと、次の言葉をそれぞれ小さなラベル（リボンや札）にして：
+${values.length?values.map(v=>'　「'+v+'」').join('\n'):'　（ステップ4の価値観）'}
+・「これからのヒント」という見出しと、次の言葉を、画面の下部に短いメモのように：
+${hints.length?hints.map(h=>'　「'+h+'」').join('\n'):'　（ステップ4のヒント）'}
+
+■ スタイル
 ・柔らかな水彩タッチ、光と空気感を大切に、見るだけで気分が上がるように
-・人物は後ろ姿で、顔は描かない
-・縦長9:16（スマホの壁紙サイズ）`;
+・人物は後ろ姿かシルエットで、顔は描かない
+・文字は読みやすい太さと大きさで、絵の邪魔にならない配置に
+・縦長（2:3）。スマホの壁紙や、印刷して手帳・デスクに貼れるように`;
 }
 async function copyPrompt(kind){
   let t='';
@@ -299,17 +323,17 @@ function parseAnalysis(raw){
   const pick=k=>{const key=Object.keys(secs).find(n=>n.includes(k));return key?secs[key]:''};
   const items=s=>s.split('\n').map(l=>l.trim()).filter(l=>/^(\d+|[０-９]+)[\.．、)）]/.test(l)||/^[・\-–]/.test(l)).map(l=>l.replace(/^(\d+|[０-９]+)[\.．、)）]\s*|^[・\-–]\s*/,''));
   const values=items(pick('価値観')).map(l=>{const p=l.split(/[｜|]/);return p.length>1?{name:p[0].trim(),why:p.slice(1).join('｜').trim()}:{name:'',why:l}});
-  const hints=items(pick('ヒント'));
+  const hints=items(pick('ヒント')).map(l=>{const p=l.split(/[｜|]/);return p.length>1?{title:p[0].trim(),text:p.slice(1).join('｜').trim()}:{title:'',text:l}});
   const motto=pick('一言').split('\n').map(s=>s.trim()).filter(Boolean)[0]||'';
-  const image=pick('画像');
   if(!values.length&&!hints.length&&!motto)return null;
-  return {values,hints,motto:motto.replace(/^[「『]|[」』]$/g,''),image};
+  return {values,hints,motto:motto.replace(/^[「『]|[」』]$/g,'')};
 }
 function applyAnalysis(){
   const raw=$('analysisPaste').value.trim();
   if(!raw){toast('ChatGPTの結果を貼り付けてください');return}
   st.analysisRaw=raw;st.analysis=parseAnalysis(raw);
-  if(st.analysis){if(st.analysis.motto)st.motto=st.analysis.motto;if(st.analysis.image)st.imagePrompt=st.analysis.image}
+  if(st.analysis&&st.analysis.motto)st.motto=st.analysis.motto;
+  st.imageEdited=false;
   save();renderAnalysis();toast('結果を表示しました');
   $('analysisResult').scrollIntoView({behavior:'smooth',block:'start'});
 }
@@ -322,14 +346,15 @@ function renderAnalysis(){
   if(a.values.length){h+='<div class="labelsmall" style="margin-top:8px">YOUR VALUES</div><h2 style="margin:5px 0 12px">大切にしている価値観</h2><div class="reportgrid">'+
     a.values.map((v,i)=>'<div class="reportcard"><div class="labelsmall">VALUE 0'+(i+1)+'</div><h3>'+escapeHTML(v.name||'価値観 '+(i+1))+'</h3><p>'+escapeHTML(v.why)+'</p></div>').join('')+'</div>'}
   if(a.hints.length){h+='<div style="margin-top:25px"><div class="labelsmall">ADVICE FOR YOUR NEXT CHAPTER</div><h2 style="margin:5px 0 12px">これからの生き方へのヒント</h2><div class="reportcard">'+
-    a.hints.map((t,i)=>'<div class="actionitem"><span class="pill">'+(i+1)+'</span><div>'+escapeHTML(t)+'</div></div>').join('')+'</div></div>'}
+    a.hints.map((t,i)=>'<div class="actionitem"><span class="pill">'+(i+1)+'</span><div>'+(t.title?'<strong>'+escapeHTML(t.title)+'</strong><br>':'')+escapeHTML(t.text)+'</div></div>').join('')+'</div></div>'}
   if(a.motto){h+='<div style="margin-top:25px"><div class="labelsmall">YOUR LIFE IN ONE LINE</div><div class="motto" style="margin-top:8px">'+escapeHTML(a.motto)+'</div></div>'}
   box.innerHTML=h;
 }
 
 /* ---------- step 5 ---------- */
-$('lifeMotto').addEventListener('input',e=>{st.motto=e.target.value;save();updateBoardMotto()});
-$('imagePrompt').addEventListener('input',e=>{st.imagePrompt=e.target.value;save()});
+$('lifeMotto').addEventListener('input',e=>{st.motto=e.target.value;if(!st.imageEdited){st.imagePrompt=buildImagePrompt();$('imagePrompt').value=st.imagePrompt}save();updateBoardMotto()});
+$('imagePrompt').addEventListener('input',e=>{st.imagePrompt=e.target.value;st.imageEdited=true;save()});
+function rebuildImagePrompt(){st.imagePrompt=buildImagePrompt();st.imageEdited=false;$('imagePrompt').value=st.imagePrompt;save();toast('最新の内容で作り直しました')}
 function updateBoardMotto(){$('boardMotto').textContent=st.motto||''}
 function showImage(input){const f=input.files&&input.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{$('boardImg').src=r.result;$('board').classList.remove('hidden');updateBoardMotto()};r.readAsDataURL(f)}
 
@@ -339,7 +364,7 @@ function reportText(){
   let t='Vision Journey｜わたしの未来ビジョン\n\n【理想の一日の回答】\n'+answersText()+'\n\n【未来のストーリー】\n'+(st.story||'');
   if(a){
     if(a.values.length)t+='\n\n【大切にしている価値観】\n'+a.values.map((v,i)=>(i+1)+'. '+(v.name?v.name+'｜':'')+v.why).join('\n');
-    if(a.hints.length)t+='\n\n【これからのヒント】\n'+a.hints.map((h,i)=>(i+1)+'. '+h).join('\n');
+    if(a.hints.length)t+='\n\n【これからのヒント】\n'+a.hints.map((h,i)=>(i+1)+'. '+(h.title?h.title+'｜':'')+h.text).join('\n');
   }else if(st.analysisRaw){t+='\n\n【AIの分析結果】\n'+st.analysisRaw}
   if(st.motto)t+='\n\n【この人生を一言で】\n'+st.motto;
   return t;
